@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package rpc;
+
+option go_package = "../gRPC/article";
+
+service ArticleService {
+    rpc GetArticle(ListArticleRequest) returns (ListArticleResponse);
+}
+
+message Article {
+    int64 id = 1;
+    string title = 2;
+    string slug = 3;
+    string description = 4;
+    string body = 5;
+    int64 author_id = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+message ListArticleRequest {
+    string keyword = 1;
+}
+
+message ListArticleResponse {
+    string status = 1;
+    int32 total = 2;
+    repeated Article articles = 3;
+}
